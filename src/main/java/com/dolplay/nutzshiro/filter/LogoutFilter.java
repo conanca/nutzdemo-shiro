@@ -27,6 +27,10 @@ public class LogoutFilter implements ActionFilter {
 				currentUser.logout();
 			} catch (SessionException ise) {
 				logger.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
+				return null;
+			}catch(Exception e){
+				logger.debug("登出发生错误",e);
+				return null;
 			}
 		}
 
