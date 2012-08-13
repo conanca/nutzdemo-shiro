@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +44,7 @@ body {
             <li><a href="permission/all">权限管理</a></li>
           </ul>
           <ul class="nav pull-right">
+            <li><a>欢迎, <shiro:principal/></a></li>
             <li><a href="logout">登出</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -50,6 +52,12 @@ body {
     </div>
   </div>
   <div class="container">
+    <ul class="breadcrumb">
+      <li>
+        <a href="user/all">用户管理</a> <span class="divider">/</span>
+      </li>
+      <li class="active">编辑用户</li>
+    </ul>
     <div class="row">
       <div class="span6">
     <form action="user/edit" class="form-horizontal">

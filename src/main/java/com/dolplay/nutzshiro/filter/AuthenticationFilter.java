@@ -4,14 +4,13 @@ import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.web.util.WebUtils;
 import org.nutz.lang.Strings;
 import org.nutz.mvc.ActionContext;
@@ -113,6 +112,7 @@ public class AuthenticationFilter implements ActionFilter {
 		}
 		try {
 			Subject subject = MvcUtils.getSubject(securityManager, request, response);
+			ThreadContext.bind(subject);
 			subject.login(token);
 			return onLoginSuccess(token, subject, request, response);
 		} catch (AuthenticationException e) {

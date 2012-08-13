@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录</title>
+<title>Nutzdemo - Shiro</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
 body {
@@ -29,14 +30,35 @@ body {
         </a>
         <a class="brand" href="#">Nutzdemo-shiro</a>
         <div class="nav-collapse">
-          <ul class="nav pull-right">
-            <li class="active"><a href="#">登录</a></li>
+          <shiro:authenticated>
+          <ul class="nav">
+            <li><a href="user/all">用户管理</a></li>
+            <li><a href="role/all">角色管理</a></li>
+            <li><a href="permission/all">权限管理</a></li>
           </ul>
+          <ul class="nav pull-right">
+            <li><a>欢迎, <shiro:principal/></a></li>
+            <li><a href="logout">登出</a></li>
+          </ul>
+          </shiro:authenticated>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
   <div class="container">
+  
+    <div class="hero-unit">
+      <p>这是一个结合 Nutz 使用 Shiro 进行登录验证和鉴权的 Demo</p>
+      <shiro:authenticated>
+        <p>欢迎, <shiro:principal/></p>
+        <p>您可以通过点击顶部导航，进行不同的操作</p>
+      </shiro:authenticated>
+      <shiro:guest>
+        <p>请您先登录</p>
+      </shiro:guest>
+    </div>
+  
+  <shiro:guest>
   <form action="login" class="form-vertical">
     <fieldset>
       <legend>请登录</legend>
@@ -60,6 +82,7 @@ body {
       </div>
     </fieldset>
   </form>
+  </shiro:guest>
   </div>
   <script src="js/jquery-1.7.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

@@ -51,19 +51,9 @@ var ioc = {
 
 	authorizationFilter : {
 		type : "com.dolplay.nutzshiro.filter.AuthorizationFilter",
-		fields : {
-			securityManager : {
-				refer : "securityManager"
-			}
-		}
 	},
 
 	logoutFilter : {
 		type : "com.dolplay.nutzshiro.filter.LogoutFilter",
-		fields : {
-			securityManager : {
-				refer : "securityManager"
-			}
-		}
 	}
 };

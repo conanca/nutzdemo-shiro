@@ -2,7 +2,7 @@ package com.dolplay.nutzshiro.filter;
 
 import java.util.List;
 
-import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.nutz.lang.Lang;
@@ -15,12 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dolplay.nutzshiro.annotation.Authorization;
-import com.dolplay.nutzshiro.util.MvcUtils;
 
 public class AuthorizationFilter implements ActionFilter {
 	final static Logger logger = LoggerFactory.getLogger(AuthorizationFilter.class);
-
-	private SecurityManager securityManager;
 
 	private static final View UNAUTH = new HttpStatusView(403);
 
@@ -31,8 +28,7 @@ public class AuthorizationFilter implements ActionFilter {
 			return null;
 		}
 
-		Subject currentUser = MvcUtils.getSubject(securityManager, actionContext.getRequest(),
-				actionContext.getResponse());
+		Subject currentUser = SecurityUtils.getSubject();
 
 		if (a.requiresUser()) {
 			if (!currentUser.isAuthenticated()) {
@@ -64,7 +60,7 @@ public class AuthorizationFilter implements ActionFilter {
 			}
 		}
 		String requiresPermissionsStr = a.requiresPermissions();
-		if(!Strings.isEmpty(requiresPermissionsStr)){
+		if (!Strings.isEmpty(requiresPermissionsStr)) {
 			String[] requiresPermissions = requiresPermissionsStr.split(",");
 			if (!(currentUser.isPermittedAll(requiresPermissions))) {
 				logger.info("用户未拥有该操作所需的所有权限,无法执行操作!");

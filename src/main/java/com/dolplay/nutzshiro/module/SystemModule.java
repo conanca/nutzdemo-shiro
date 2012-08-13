@@ -14,14 +14,14 @@ import com.dolplay.nutzshiro.filter.AuthenticationFilter;
 public class SystemModule {
 
 	@At("/login")
-	@Ok("redirect:/user/all")
+	@Ok(">>:/")
 	@Filters({ @By(type = AuthenticationFilter.class, args = { "ioc:authenticationFilter" }) })
 	public void login() {
 
 	}
 	
 	@At("/logout")
-	@Ok("redirect:/")
+	@Ok(">>:/")
 	@Filters({ @By(type = AuthenticationFilter.class, args = { "ioc:logoutFilter" }) })
 	public void logout() {
 
