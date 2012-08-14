@@ -55,6 +55,7 @@ body {
       </shiro:authenticated>
       <shiro:guest>
         <p>请您先登录</p>
+        <p>管理员用户/密码 : admin/123</p>
       </shiro:guest>
     </div>
   

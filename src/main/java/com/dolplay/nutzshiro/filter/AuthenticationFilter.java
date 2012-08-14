@@ -52,6 +52,7 @@ public class AuthenticationFilter implements ActionFilter {
 					logger.info("登录失败");
 				}
 			} catch (Exception e) {
+				logger.error("登录出错", e);
 				view = new ViewWrapper(new JspView("/index"), "登录出错");
 			}
 		}
