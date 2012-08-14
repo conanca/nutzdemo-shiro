@@ -38,22 +38,5 @@ var ioc = {
 				refer : "shiroDbRealm"
 			}
 		}
-	},
-
-	authenticationFilter : {
-		type : "com.dolplay.nutzshiro.filter.AuthenticationFilter",
-		fields : {
-			securityManager : {
-				refer : "securityManager"
-			}
-		}
-	},
-
-	authorizationFilter : {
-		type : "com.dolplay.nutzshiro.filter.AuthorizationFilter",
-	},
-
-	logoutFilter : {
-		type : "com.dolplay.nutzshiro.filter.LogoutFilter",
 	}
 };

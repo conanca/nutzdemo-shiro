@@ -7,19 +7,20 @@ import org.nutz.mvc.annotation.IocBy;
 import org.nutz.mvc.annotation.Localization;
 import org.nutz.mvc.annotation.Modules;
 import org.nutz.mvc.annotation.SetupBy;
-import org.nutz.mvc.ioc.provider.JsonIocProvider;
+import org.nutz.mvc.ioc.provider.ComboIocProvider;
 
-import com.dolplay.nutzshiro.filter.AuthorizationFilter;
+import com.dolplay.nutzshiro.filter.ShiroActionFilter;
 import com.dolplay.nutzshiro.module.PermissionModule;
 import com.dolplay.nutzshiro.module.RoleModule;
 import com.dolplay.nutzshiro.module.SystemModule;
 import com.dolplay.nutzshiro.module.UserModule;
 
-@Modules({ UserModule.class, RoleModule.class, SystemModule.class,PermissionModule.class })
-@IocBy(type = JsonIocProvider.class, args = { "ioc.js", "dao.js", "shiro.js" })
+@Modules({ UserModule.class, RoleModule.class, SystemModule.class, PermissionModule.class })
+@IocBy(type = ComboIocProvider.class, args = { "*org.nutz.ioc.loader.json.JsonLoader", "dao.js", "shiro.js",
+		"*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.dolplay.nutzshiro" })
 @SetupBy(MvcSetup.class)
 @Fail("json")
-@Filters(@By(type = AuthorizationFilter.class, args = { "ioc:authorizationFilter" }))
+@Filters(@By(type = ShiroActionFilter.class))
 @Localization("msg")
 public class MainModule {
 
