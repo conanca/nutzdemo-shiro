@@ -16,7 +16,7 @@ import com.dolplay.nutzshiro.module.SystemModule;
 import com.dolplay.nutzshiro.module.UserModule;
 
 @Modules({ UserModule.class, RoleModule.class, SystemModule.class, PermissionModule.class })
-@IocBy(type = ComboIocProvider.class, args = { "*org.nutz.ioc.loader.json.JsonLoader", "dao.js", "shiro.js",
+@IocBy(type = ComboIocProvider.class, args = { "*org.nutz.ioc.loader.json.JsonLoader", "dao.js",
 		"*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.dolplay.nutzshiro" })
 @SetupBy(MvcSetup.class)
 @Fail("json")

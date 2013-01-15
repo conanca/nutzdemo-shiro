@@ -2,11 +2,9 @@ package com.dolplay.nutzshiro;
 
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
-import org.apache.shiro.mgt.SecurityManager;
 import org.nutz.dao.Dao;
 import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
@@ -44,10 +42,6 @@ public class MvcSetup implements Setup {
 				dao.update(user);
 			}
 		}
-
-		// 设置 Shiro 的 securityManager
-		SecurityManager securityManager = ioc.get(SecurityManager.class);
-		SecurityUtils.setSecurityManager(securityManager);
 	}
 
 	@Override

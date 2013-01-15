@@ -9,12 +9,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.session.SessionException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 import org.nutz.ioc.annotation.InjectName;
-import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.Mvcs;
 import org.nutz.mvc.View;
@@ -28,16 +27,11 @@ import org.nutz.mvc.view.ViewWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dolplay.nutzshiro.util.MvcUtils;
-
 @IocBean
 @InjectName
 @Filters
 public class SystemModule {
 	private static Logger logger = LoggerFactory.getLogger(SystemModule.class);
-
-	@Inject
-	private SecurityManager securityManager;
 
 	@At("/login")
 	public View login(ServletRequest request, ServletResponse response, @Param("username") String username,
@@ -45,7 +39,7 @@ public class SystemModule {
 		String host = request.getRemoteHost();
 		AuthenticationToken token = new UsernamePasswordToken(username, password, rememberMe, host);
 		try {
-			Subject subject = MvcUtils.getSubject(securityManager, request, response);
+			Subject subject = SecurityUtils.getSubject();
 			ThreadContext.bind(subject);
 			subject.login(token);
 			return new ViewWrapper(new ServerRedirectView("/"), null);
@@ -62,6 +56,7 @@ public class SystemModule {
 
 	@At("/logout")
 	@Ok(">>:/")
+	@RequiresAuthentication
 	public void logout() {
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
