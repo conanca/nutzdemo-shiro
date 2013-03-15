@@ -18,7 +18,7 @@ public class ShiroMethodInterceptor implements MethodInterceptor {
 	public void filter(final InterceptorChain chain) throws Throwable {
 
 		try {
-			ShiroAnnotationsAuthorizingMethodInterceptor.defaultAuth.assertAuthorized(new MethodInvocation() {
+			ShiroAnnotationsAuthorizingMethodInterceptor.DEFAULT_AUTH.assertAuthorized(new MethodInvocation() {
 
 				//这个方法不会被执行的.
 				public Object proceed() throws Throwable {

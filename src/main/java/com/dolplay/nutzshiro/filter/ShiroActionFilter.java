@@ -24,7 +24,7 @@ public class ShiroActionFilter implements ActionFilter {
 
 	public View match(final ActionContext actionContext) {
 		try {
-			ShiroAnnotationsAuthorizingMethodInterceptor.defaultAuth.assertAuthorized(new MethodInvocation() {
+			ShiroAnnotationsAuthorizingMethodInterceptor.DEFAULT_AUTH.assertAuthorized(new MethodInvocation() {
 
 				public Object proceed() throws Throwable {
 					throw Lang.noImplement();
