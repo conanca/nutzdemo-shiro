@@ -7,7 +7,7 @@ var ioc = {
 		},
 		fields : {
 			// 请修改下面的数据库连接信息
-			url : 'jdbc:h2:~/nutzdemo-shiro/db/db;CACHE_SIZE=131072;AUTO_RECONNECT=TRUE',
+			url : 'jdbc:h2:~/apps/nutzdemo-shiro/db/db;CACHE_SIZE=131072;AUTO_RECONNECT=TRUE',
 			username : 'sa',
 			password : '',
 			maxActive : 20,
