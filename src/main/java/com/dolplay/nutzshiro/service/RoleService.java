@@ -14,11 +14,8 @@ import org.nutz.service.IdEntityService;
 import com.dolplay.nutzshiro.domain.Permission;
 import com.dolplay.nutzshiro.domain.Role;
 
-@IocBean(fields = { "dao" })
+@IocBean(args = { "refer:dao" })
 public class RoleService extends IdEntityService<Role> {
-	public RoleService() {
-		super();
-	}
 
 	public RoleService(Dao dao) {
 		super(dao);
@@ -27,15 +24,15 @@ public class RoleService extends IdEntityService<Role> {
 	public List<Role> list() {
 		return query(null, null);
 	}
-	
-	public void insert(Role role){
+
+	public void insert(Role role) {
 		dao().insert(role);
 	}
-	
+
 	public Role view(Long id) {
 		return dao().fetchLinks(fetch(id), "permissions");
 	}
-	
+
 	public void update(Role role) {
 		dao().update(role);
 	}

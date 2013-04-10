@@ -12,12 +12,8 @@ import org.nutz.service.IdEntityService;
 import com.dolplay.nutzshiro.domain.Role;
 import com.dolplay.nutzshiro.domain.User;
 
-@IocBean(fields = { "dao" })
+@IocBean(args = { "refer:dao" })
 public class UserService extends IdEntityService<User> {
-
-	public UserService() {
-		super();
-	}
 
 	public UserService(Dao dao) {
 		super(dao);
@@ -59,7 +55,7 @@ public class UserService extends IdEntityService<User> {
 		user.setRoles(Lang.list(role));
 		dao().insertRelation(user, "roles");
 	}
-	
+
 	public void removeRole(Long userId, Long roleId) {
 		dao().clear("SYSTEM_USER_ROLE", Cnd.where("USERID", "=", userId).and("ROLEID", "=", roleId));
 	}

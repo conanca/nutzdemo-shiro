@@ -10,11 +10,8 @@ import org.nutz.service.IdEntityService;
 
 import com.dolplay.nutzshiro.domain.Permission;
 
-@IocBean(fields = { "dao" })
+@IocBean(args = { "refer:dao" })
 public class PermissionService extends IdEntityService<Permission> {
-	public PermissionService() {
-		super();
-	}
 
 	public PermissionService(Dao dao) {
 		super(dao);
