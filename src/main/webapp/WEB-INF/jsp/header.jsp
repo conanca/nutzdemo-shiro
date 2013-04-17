@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">SFM</a>
+          <a class="brand" href="#">Nutz demo for Shiro</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <shiro:authenticated>
@@ -62,8 +62,10 @@
                   </ul>
                </li>
               </shiro:authenticated>
-              <li><a href="#search">搜索</a></li>
             </ul>
+            <form class="navbar-search pull-left">
+              <input type="text" class="search-query span2" placeholder="搜索">
+            </form>
             <shiro:guest>
               <form action="login"  class="navbar-form pull-right">
                 <input name="username" class="span2" type="text" placeholder="${msg.login_name}">
