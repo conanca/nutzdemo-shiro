@@ -48,7 +48,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		User user = getUserService().fetchByName(token.getUsername());
 		if (user != null) {
-			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
+			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
 			ByteSource salt = ByteSource.Util.bytes(user.getSalt());
 			info.setCredentialsSalt(salt);
 			return info;
@@ -61,8 +61,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
 	 */
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		String loginName = (String) principals.fromRealm(getName()).iterator().next();
-		User user = getUserService().fetchByName(loginName);
+		User user = (User) principals.getPrimaryPrincipal();
 		if (user != null) {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 			info.addRoles(getUserService().getRoleNameList(user));

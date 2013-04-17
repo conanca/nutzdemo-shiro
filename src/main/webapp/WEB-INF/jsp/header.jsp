@@ -8,7 +8,7 @@
 %>
     <base href="<%=basePath%>" />
     <meta charset="utf-8">
-    <title>Steam Flea Market</title>
+    <title>Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Nutz demo for Shiro</a>
+          <a class="brand" href="">Demo</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <shiro:authenticated>
@@ -75,7 +75,7 @@
             </shiro:guest>
             <shiro:authenticated>
               <ul class="nav pull-right">
-                <li><a><shiro:principal/></a></li>
+                <li><a><shiro:principal type="com.dolplay.nutzshiro.domain.User" property="name"/></a></li>
                 <li><a href="logout">登出</a></li>
               </ul>
             </shiro:authenticated>
