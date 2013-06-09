@@ -49,7 +49,7 @@
           <a class="brand" href="">Demo</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <shiro:authenticated>
+              <shiro:user>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     系统管理
@@ -61,7 +61,7 @@
                     <li><a href="permission/all">权限管理</a></li>
                   </ul>
                </li>
-              </shiro:authenticated>
+              </shiro:user>
             </ul>
             <form class="navbar-search pull-left">
               <input type="text" class="search-query span2" placeholder="搜索">
@@ -73,12 +73,12 @@
                 <button type="submit" class="btn">登入</button>
               </form>
             </shiro:guest>
-            <shiro:authenticated>
+            <shiro:user>
               <ul class="nav pull-right">
                 <li><a><shiro:principal type="com.dolplay.nutzshiro.domain.User" property="name"/></a></li>
                 <li><a href="logout">登出</a></li>
               </ul>
-            </shiro:authenticated>
+            </shiro:user>
           </div><!--/.nav-collapse -->
         </div>
       </div>
