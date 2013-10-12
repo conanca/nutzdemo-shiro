@@ -1,8 +1,12 @@
 target
+*.class
+
 .classpath
 .project
 .settings
-*.class
+
+.idea
+*.iml
 
 # Package Files #
 *.jar
